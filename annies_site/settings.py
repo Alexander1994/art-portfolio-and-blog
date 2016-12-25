@@ -123,3 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = BASE_DIR + '../annies_portfolio_site/media'
