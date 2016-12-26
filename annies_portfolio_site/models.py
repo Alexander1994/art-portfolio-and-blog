@@ -20,18 +20,18 @@ class PicturePost(models.Model):
     title = models.CharField(max_length=255)
     picture = models.ForeignKey(Picture)
     category = models.ForeignKey(Category)
-    price = models.IntegerField(default=0)
+    price = models.IntegerField(null=True)
     date = models.DateField(auto_now_add=True)
     description = models.TextField()
 
     def __str__(self):
-        return self.picture.title
+        return self.title
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=255)
-    description = models.TextField()
+    body = models.TextField()
     date = models.DateField(auto_now_add=True)
-    picture = models.ForeignKey(Picture, null=True)
+    picture = models.ForeignKey(Picture, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return "{}, {}".format(self.picture.title, self.date)
+        return "{}, {}".format(self.title, self.date)
