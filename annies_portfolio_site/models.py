@@ -6,12 +6,15 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+def rename_upload(instance, filename):
+    return 'img/{}.{}'.format(instance.name, filename.split('.')[-1])
+
 class Picture(models.Model):
     name = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='/')
+    image = models.ImageField(upload_to=rename_upload)
 
     def __str__(self):
-        return self.title
+        return self.name
 
 class PicturePost(models.Model):
     title = models.CharField(max_length=255)
