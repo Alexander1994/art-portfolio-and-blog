@@ -20,7 +20,7 @@ class PicturePost(models.Model):
     title = models.CharField(max_length=255)
     picture = models.ForeignKey(Picture)
     category = models.ForeignKey(Category)
-    price = models.IntegerField(null=True)
+    price = models.IntegerField(null=True, blank=True)
     date = models.DateField(auto_now_add=True)
     description = models.TextField()
 
@@ -31,7 +31,7 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=255)
     body = models.TextField()
     date = models.DateField(auto_now_add=True)
-    picture = models.ForeignKey(Picture, on_delete=models.SET_NULL, null=True)
+    picture = models.ForeignKey(Picture, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return "{}, {}".format(self.title, self.date)
