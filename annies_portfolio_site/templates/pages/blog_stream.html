@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} Blog {% endblock %}
+{% block description %}Collection of Annie Jefferson's blog posts{% endblock %}
+
+{% block content %}
+<h1>Blog Stream</h1>
+{% for blog in page.all_blog_posts %}
+  <p>
+    TITLE: {{blog.title}}
+  </p>
+  <p>
+    BODY: {{blog.body}}
+  </p>
+  <p>
+    DATE: {{blog.date}}
+  </p>
+  {% if blog.has_picture %}
+  <p>
+    PICTURE
+  </p>
+  <img src="{{blog.picture_url}}" alt="" />
+  {% endif %}
+  <hr>
+
+{% endfor %}
+
+{% endblock %}

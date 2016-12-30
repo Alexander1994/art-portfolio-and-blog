@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} Portfolio {% endblock %}
+{% block description %}Annie Jefferson's Portfolio{% endblock %}
+
+{% block content %}
+<h1>Picture Stream</h1>
+{% for picture_post in page.all_picture_posts %}
+  <p>
+    TITLE: {{picture_post.title}}
+  </p>
+  <p>
+    CATEGORY: {{picture_post.category}}
+  </p>
+  <p>
+    DESCRIPTION: {{picture_post.description}}
+  </p>
+  <p>
+    PRICE: {{picture_post.price}}
+  </p>
+  <p>
+    PICTURE
+  </p>
+  <img src="{{picture_post.picture_url}}" alt="" />
+  <hr>
+
+{% endfor %}
+{% endblock %}

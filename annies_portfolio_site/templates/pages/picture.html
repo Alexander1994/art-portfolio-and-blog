@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %} {{page.title}} {% endblock %}
+{% block description %}An artwork titled {{page.title}} by Annie Jefferson{% endblock %}
+
+{% block content %}
+<h1>Picture</h1>
+<p>
+  TITLE: {{page.title}}
+</p>
+<p>
+  CATEGORY: {{page.category}}
+</p>
+<p>
+  DESCRIPTION: {{page.description}}
+</p>
+<p>
+  PRICE: {{page.price}}
+</p>
+<p>
+  PICTURE
+</p>
+<img src="{{page.picture_url}}" alt="" />
+<hr>
+
+{% endblock %}
