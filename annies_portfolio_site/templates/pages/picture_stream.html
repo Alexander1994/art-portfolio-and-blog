@@ -1,7 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %} Portfolio {% endblock %}
 {% block description %}Annie Jefferson's Portfolio{% endblock %}
-
+{% block javascript %}
+<script async src="{% static "js/deffer-img.js" %}"></script>
+{% endblock %}
 {% block content %}
 <h1>Picture Stream</h1>
 {% for picture_post in page.all_picture_posts %}
@@ -9,7 +12,7 @@
     TITLE: {{picture_post.title}}
   </p>
   <p>
-    CATEGORY: {{picture_post.category}}
+    MEDIUM: {{picture_post.medium}}
   </p>
   <p>
     DESCRIPTION: {{picture_post.description}}
@@ -18,9 +21,12 @@
     PRICE: {{picture_post.price}}
   </p>
   <p>
+    DIMENSION: {{picture_post.dimensions}}
+  </p>
+  <p>
     PICTURE
   </p>
-  <img src="{{picture_post.picture_url}}" alt="" />
+  <img data-src="{{picture_post.picture_url}}" alt="" />
   <hr>
 
 {% endfor %}

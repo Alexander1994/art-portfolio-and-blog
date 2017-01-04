@@ -1,4 +1,4 @@
-from annies_portfolio_site.models import Category, Picture, PicturePost, BlogPost
+from annies_portfolio_site.models import Medium, Picture, PicturePost, BlogPost
 
 class BlogPostPage(object):
     def __init__(self, pk):
@@ -58,14 +58,18 @@ class PicturePostPage(object):
         return self.picture_post.title
 
     @property
-    def category(self):
-        return self.picture_post.category
+    def medium(self):
+        return self.picture_post.medium
 
     @property
     def price(self):
         if self.picture_post.price:
             return self.picture_post.price
         return ''
+
+    @property
+    def dimensions(self):
+        return "{} x {}".format(self.picture_post.height, self.picture_post.width)
 
     @property
     def description(self):
