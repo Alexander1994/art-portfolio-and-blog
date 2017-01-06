@@ -24,7 +24,26 @@
   </head>
 
   <body>
-    {% block content %}{% endblock %}
+    <header class="container">
+      <div class="row">
+        <a class="logo" href="{% url 'home' %}"><h1>Annie Jefferson</h1></a>
+      </div>
+      <nav class="row">
+        <ul>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'blog_stream' %}">Blog</a></li>
+          <li><a href="{% url 'picture_stream' %}">Portfolio</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+    <footer>
+      <p>
+        Created by Alex McCallum &#9829;
+      </p>
+    </footer>
   </body>
 
 </html>
