@@ -6,7 +6,12 @@
 <script async src="{% static "js/deffer-img.js" %}"></script>
 {% endblock %}
 {% block content %}
-<h1>Picture Stream</h1>
+<div class="stream">
+  <div class="section">
+
+  </div>
+</div>
+{% comment %}
 {% for picture_post in page.all_picture_posts %}
   <p>
     TITLE: {{picture_post.title}}
@@ -34,4 +39,6 @@
   <hr>
 
 {% endfor %}
+{% endcomment %}
+
 {% endblock %}

@@ -2,6 +2,7 @@
 nav {
   text-align: center;
 }
+
 .logo {
   text-align: center;
   text-decoration: underline;
@@ -11,10 +12,12 @@ When img for logo is supplied by client use:
 width: *insert width of img*;
 margin: 0 auto;
 */
+
 nav ul {
   list-style: none;
   margin: 0;
 }
+
 nav ul li {
   display: inline-block;
 }
@@ -25,33 +28,41 @@ nav ul li a {
 }
 /* Stream */
 .section {
-  height: calc(100vh - 13rem);
+  height: calc(~"100vh - 13rem");
   max-width: 100%;
   width: 100vw;
   display: inline-block;
+
 }
+
 /* Footer */
 footer {
   position: absolute;
   right: 0.25em;
   bottom: 0;
+
 }
 footer p {
   margin-bottom: 0;
 }
+
+
 /* Cross Site */
 a {
   text-decoration: none;
   color: #222;
 }
+
 h1 {
   margin-bottom: 0;
 }
+
 /* Deffered Images */
 img {
   opacity: 1;
   transition: opacity 0.3s;
 }
+
 img[data-src] {
   opacity: 0;
 }
