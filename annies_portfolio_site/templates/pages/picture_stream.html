@@ -17,12 +17,16 @@
   <p>
     DESCRIPTION: {{picture_post.description}}
   </p>
+  {% if picture_post.has_price %}
   <p>
     PRICE: {{picture_post.price}}
   </p>
+  {% endif %}
+  {% if picture_post.has_dimensions %}
   <p>
     DIMENSION: {{picture_post.dimensions}}
   </p>
+  {% endif %}
   <p>
     PICTURE
   </p>

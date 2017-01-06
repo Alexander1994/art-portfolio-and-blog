@@ -62,10 +62,20 @@ class PicturePostPage(object):
         return self.picture_post.medium
 
     @property
+    def has_price(self):
+        return True if self.picture_post.price else False
+
+    @property
     def price(self):
-        if self.picture_post.price:
-            return self.picture_post.price
+        if self.picture_post.price == 0:
+            return 'Free'
+        elif self.picture_post.price:
+            return '{} $'.format(self.picture_post.price)
         return ''
+
+    @property
+    def has_dimensions(self):
+        return True if self.picture_post.height and self.picture_post.width else False
 
     @property
     def dimensions(self):
