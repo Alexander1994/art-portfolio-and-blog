@@ -1,34 +1,115 @@
 /* Header */
-nav {
-  text-align: center;
-}
 .logo {
   text-align: center;
   text-decoration: underline;
+  height: 6rem;
+  font-size: 6rem;
 }
-/*
-When img for logo is supplied by client use:
-width: *insert width of img*;
-margin: 0 auto;
-*/
+nav {
+  text-align: center;
+}
 nav ul {
   list-style: none;
   margin: 0;
+  height: 5rem;
 }
 nav ul li {
   display: inline-block;
+  margin: 0;
 }
 nav ul li a {
   margin: 0 1em;
   letter-spacing: .2rem;
   line-height: 5rem;
 }
-/* Stream */
-.section {
-  height: calc(100vh - 13rem);
-  max-width: 100%;
-  width: 100vw;
-  display: inline-block;
+/*
+When img for logo is supplied by client use:
+width: *insert width of img*;
+margin: 0 auto;
+*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  -ms-touch-action: none;
+}
+body {
+  overflow: hidden;
+  /* this is important to prevent the whole page to bounce */
+}
+.iscroll-wrapper {
+  position: absolute;
+  z-index: 1;
+  top: 11rem;
+  bottom: 2rem;
+  left: 0;
+  width: 100%;
+  background: #ccc;
+  overflow: hidden;
+}
+.iscroller {
+  position: absolute;
+  z-index: 1;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  min-width: 100%;
+  height: 100%;
+  background-color: #fafafa;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -o-text-size-adjust: none;
+  text-size-adjust: none;
+}
+.iscroller .upper-stream,
+.iscroller .lower-stream {
+  width: 100%;
+  height: 49%;
+  white-space: nowrap;
+  display: flex;
+}
+.iscroller .upper-stream {
+  align-items: flex-end;
+  margin: 0 1em 0 1em;
+}
+.iscroller .lower-stream {
+  align-items: flex-start;
+  margin: 1em 1em 0 1em;
+}
+.iscroller .post {
+  margin-right: 1em;
+}
+.iscroller .post:last-child {
+  margin-right: 0;
+}
+.iscroller .post img {
+  height: 100%;
+}
+.iscroller .xs {
+  height: 60%;
+}
+.iscroller .sm {
+  height: 71%;
+}
+.iscroller .md {
+  height: 72%;
+}
+.iscroller .lg {
+  height: 83%;
+}
+.iscroller .xl {
+  height: 94%;
 }
 /* Footer */
 footer {

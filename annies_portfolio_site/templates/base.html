@@ -23,10 +23,10 @@
     {% block javascript %}{% endblock %}
   </head>
 
-  <body>
+  <body onload="loaded()">
     <header class="container">
       <div class="row">
-        <a class="logo" href="{% url 'home' %}"><h1>Annie Jefferson</h1></a>
+        <a href="{% url 'home' %}"><h1 class="logo">Annie Jefferson</h1></a>
       </div>
       <nav class="row">
         <ul>

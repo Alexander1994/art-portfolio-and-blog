@@ -1,38 +1,121 @@
 /* Header */
-nav {
-  text-align: center;
-}
+@logoheight: 6rem;
+@menuheight: 5rem;
+@headerheight: @menuheight + @logoheight;
+@footerheight: 2rem;
 
 .logo {
   text-align: center;
   text-decoration: underline;
+  height: @logoheight;
+  font-size: @logoheight;
 }
+nav {
+  text-align: center;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    height: @menuheight;
+  }
+  ul li {
+    display: inline-block;
+    margin: 0;
+  }
+  ul li a {
+    margin: 0 1em;
+    letter-spacing: .2rem;
+    line-height: 5rem;
+  }
+}
+
 /*
 When img for logo is supplied by client use:
 width: *insert width of img*;
 margin: 0 auto;
 */
 
-nav ul {
-  list-style: none;
-  margin: 0;
+// Iscroll settings
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-nav ul li {
-  display: inline-block;
+html {
+	-ms-touch-action: none;
 }
-nav ul li a {
-  margin: 0 1em;
-  letter-spacing: .2rem;
-  line-height: 5rem;
-}
-/* Stream */
-.section {
-  height: calc(~"100vh - 13rem");
-  max-width: 100%;
-  width: 100vw;
-  display: inline-block;
 
+body {
+	overflow: hidden; /* this is important to prevent the whole page to bounce */
+}
+
+//scroll wrapper
+.iscroll-wrapper {
+	position: absolute;
+	z-index: 1;
+	top: @headerheight;
+	bottom: @footerheight;
+	left: 0;
+	width: 100%;
+	background: #ccc;
+	overflow: hidden;
+}
+.iscroller {
+  @imgsidepadding: 1em;
+  @streamdivideheight: 1em;
+
+	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+  min-width: 100%;
+  height: 100%;
+	background-color: #fafafa;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+
+  // Stream
+  .upper-stream, .lower-stream {
+    width: 100%;
+    height: 49%;
+    white-space: nowrap;
+    display: flex;
+  }
+  .upper-stream {
+    align-items: flex-end;
+    margin: 0 @imgsidepadding 0 @imgsidepadding;
+  }
+  .lower-stream {
+    align-items: flex-start;
+    margin: @streamdivideheight @imgsidepadding 0 @imgsidepadding;
+  }
+
+  // Post
+  .post {
+    margin-right: 1em;
+
+    &:last-child { margin-right: 0; }
+    img { height: 100%; }
+  }
+  //thumbnail sizes
+  .xs { height: 60%; }
+  .sm { height: 71%; }
+  .md { height: 72%; }
+  .lg { height: 83%; }
+  .xl { height: 94%; }
 }
 
 /* Footer */
@@ -41,11 +124,8 @@ footer {
   right: 0.25em;
   bottom: 0;
 
+  p { margin-bottom: 0; }
 }
-footer p {
-  margin-bottom: 0;
-}
-
 
 /* Cross Site */
 a {
