@@ -18,6 +18,18 @@ class Picture(models.Model):
         return self.name
 
 class PicturePost(models.Model):
+    XSMALL='xs'
+    SMALL='sm'
+    MEDIUM='md'
+    LARGE='lg'
+    XLARGE='xl'
+    THUMBNAIL_SIZE_CHOICES = (
+        (XSMALL, 'extra-small'),
+        (SMALL, 'small'),
+        (MEDIUM, 'medium'),
+        (LARGE, 'large'),
+        (XLARGE, 'extra-large'),
+    )
     title = models.CharField(max_length=255)
     picture = models.ForeignKey(Picture)
     description = models.TextField()
@@ -26,8 +38,12 @@ class PicturePost(models.Model):
     date = models.DateField(auto_now_add=True)
     height = models.PositiveSmallIntegerField(null=True, blank=True)
     width = models.PositiveSmallIntegerField(null=True, blank=True)
+    thumbnail_size = models.CharField(max_length=2, choices=THUMBNAIL_SIZE_CHOICES, default=MEDIUM)
 
     def clean(self):
+        if self.price < 0:
+            raise ValidationError('Please enter value greater then or equal to 0 as a price')
+
         if self.height == 0 or self.width == 0:
             raise ValidationError('Please enter a value greater then 0 as a dimension')
 

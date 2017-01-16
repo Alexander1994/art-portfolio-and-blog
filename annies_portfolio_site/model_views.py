@@ -50,8 +50,16 @@ class PicturePostPage(object):
         return self.picture_post.picture.image.url
 
     @property
-    def minurl(self):
-        pass
+    def picture_height(self):
+        return self.picture_post.picture.image.height
+
+    @property
+    def picture_width(self):
+        return self.picture_post.picture.image.width
+
+    @property
+    def picture_thumbnail_size(self):
+        return self.picture_post.thumbnail_size
 
     @property
     def title(self):
@@ -71,7 +79,6 @@ class PicturePostPage(object):
             return 'Free'
         elif self.picture_post.price:
             return '{} $'.format(self.picture_post.price)
-        return ''
 
     @property
     def has_dimensions(self):
@@ -86,11 +93,23 @@ class PicturePostPage(object):
         return self.picture_post.description
 
 
+def get_picture_post_list():
+    picture_posts = PicturePost.objects.all().order_by('date')
+    return [PicturePostPage(picture_post.pk)
+            for picture_post in picture_posts]
+
 class PicturePostStreamPage(object):
     def __init__(self):
-        self.picture_posts = PicturePost.objects.all().order_by('date')
+        self.picture_post_list = get_picture_post_list()
+
+    @property
+    def upper_stream_picture_posts(self):
+        return self.picture_post_list[0:][::2] # even
+
+    @property
+    def lower_stream_picture_posts(self):
+        return self.picture_post_list[1:][::2] # odd
 
     @property
     def all_picture_posts(self):
-        return [PicturePostPage(picture_post.pk)
-                for picture_post in self.picture_posts]
+        return self.picture_post_list
