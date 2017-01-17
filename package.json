@@ -1,0 +1,17 @@
+{
+  "name": "annies-site",
+  "version": "1.0.0",
+  "description": "portfolio site for annie",
+  "main": "index.js",
+  "scripts": {
+    "buildless": "./compileless"
+  },
+  "author": "Alex McCallum",
+  "license": "MIT",
+  "cdnDependencies": {
+    "iscroll": "^5.2.0"
+  },
+  "devDependencies": {
+    "less": "^2.7.2"
+  }
+}

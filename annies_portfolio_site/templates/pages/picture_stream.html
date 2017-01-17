@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cdn %}
 {% block title %} Portfolio {% endblock %}
 {% block description %}Annie Jefferson's Portfolio{% endblock %}
 {% block javascript %}
-<script async src="//cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>
+<script async src="{% cdn_url 'iscroll' %}"></script>
 <script src="{% static "js/iscrollconfig.js" %}"></script>
 <script async src="{% static "js/deffer-img.js" %}"></script>
 {% endblock %}
