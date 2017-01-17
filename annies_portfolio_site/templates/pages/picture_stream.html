@@ -12,14 +12,14 @@
 	<div class="iscroller">
 		<div class="upper-stream">
 			{% for picture in page.upper_stream_picture_posts  %}
-			<div class="post {{picture.picture_thumbnail_size}}">
+			<div class="post post-{{picture.picture_thumbnail_size}}">
 				<img data-src="{{picture.picture_url}}" alt="{{picture.title}}" />
 			</div>
 			{% endfor %}
 		</div>
 		<div class="lower-stream">
 			{% for picture in page.lower_stream_picture_posts %}
-			<div class="post {{picture.picture_thumbnail_size}}">
+			<div class="post post-{{picture.picture_thumbnail_size}}">
 				<img data-src="{{picture.picture_url}}" alt="{{picture.title}}" />
 			</div>
 			{% endfor %}
