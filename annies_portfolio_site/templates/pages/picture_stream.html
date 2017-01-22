@@ -7,6 +7,8 @@
 <script async src="{% cdn_url 'iscroll' %}"></script>
 <script src="{% static "js/iscrollconfig.js" %}"></script>
 <script async src="{% static "js/deffer-img.js" %}"></script>
+<script src="{% static "js/bundle.js" %}"></script>
+<script src="{% static "js/center-img.js" %}"></script>
 {% endblock %}
 {% block content %}
 <div class="iscroll-wrapper">
@@ -27,6 +29,22 @@
 		</div>
 	</div>
 </div>
+<div class="modal">
+	<div class="modal-content">
+		<div class="carousel">
+			{% for picture_post in page.all_picture_posts %}
+			<div class="post-container">
+				<div class="modal-img-container center-img-container-js">
+					<img class="center-img-js" src="{{picture_post.picture_url}}" alt="" />
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+
+
+	</div>
+</div>
+
 
 {% comment %}
 {% for picture_post in page.all_picture_posts %}
