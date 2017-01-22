@@ -4,7 +4,8 @@
   "description": "portfolio site for annie",
   "main": "index.js",
   "scripts": {
-    "buildless": "./compileless"
+    "buildless": "./compileless.sh",
+    "buildbrowserify": "./buildbrowserify.sh"
   },
   "author": "Alex McCallum",
   "license": "MIT",
@@ -12,6 +13,10 @@
     "iscroll": "^5.2.0"
   },
   "devDependencies": {
+    "browserify": "^13.3.0",
     "less": "^2.7.2"
+  },
+  "dependencies": {
+    "siema": "^1.1.1"
   }
 }
