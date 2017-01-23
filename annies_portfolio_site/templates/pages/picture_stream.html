@@ -31,6 +31,12 @@
 </div>
 <div class="modal">
 	<div class="modal-content">
+		<div class="arrow-container arrow-container-left arrow-container-js arrow-container-left-js">
+			{% include "../widgets/arrow.html" with direction="left" %}
+		</div>
+		<div class="arrow-container arrow-container-right arrow-container-js arrow-container-right-js">
+			{% include "../widgets/arrow.html" with direction="right" %}
+		</div>
 		<div class="carousel">
 			{% for picture_post in page.all_picture_posts %}
 			<div class="post-container">
@@ -40,8 +46,6 @@
 			</div>
 			{% endfor %}
 		</div>
-
-
 	</div>
 </div>
 

@@ -1,11 +1,18 @@
 var Siema = require('siema');
-new Siema({
+var siema = new Siema({
   selector: '.carousel',
-  duration: 200,
+  duration: 0,
   easing: 'ease-out',
   perPage: 1,
   startIndex: 0,
-  draggable: true,
+  draggable: false,
   threshold: 20,
-  loop: false
+  loop: true
+});
+document.getElementsByClassName('arrow-container-left-js')[0].addEventListener('click', function() {
+  siema.prev();
+});
+
+document.getElementsByClassName('arrow-container-right-js')[0].addEventListener('click', function() {
+  siema.next();
 });

@@ -137,6 +137,22 @@ body {
     background: white;
     width: @content-width;
     height: @content-height;
+    position: relative;
+
+    .arrow-container {
+      cursor: pointer;
+      width: @content-width/2;
+      height: 70%;
+      position: absolute;
+      top: 0;
+      z-index: 5;
+
+
+      &-right { right: 1em; }
+      &-left {  left: 1em;  }
+
+    }
+
   }
   &-img-container {
     background: black;
@@ -152,6 +168,10 @@ body {
     height: 100%;
   }
 }
+.right-arrow {
+  float: right;
+}
+
 
 
 /* Carousel */
