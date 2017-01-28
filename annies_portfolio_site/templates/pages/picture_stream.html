@@ -12,18 +12,18 @@
 {% endblock %}
 {% block content %}
 <div class="iscroll-wrapper">
-	<div class="iscroller">
+	<div class="iscroller stream-js">
 		<div class="upper-stream">
 			{% for picture in page.upper_stream_picture_posts  %}
 			<div class="post post-{{picture.picture_thumbnail_size}}">
-				<img data-src="{{picture.picture_url}}" alt="{{picture.title}}" />
+				<img data-index={{picture.index}} data-src="{{picture.picture_url}}" alt="{{picture.title}}" />
 			</div>
 			{% endfor %}
 		</div>
 		<div class="lower-stream">
 			{% for picture in page.lower_stream_picture_posts %}
 			<div class="post post-{{picture.picture_thumbnail_size}}">
-				<img data-src="{{picture.picture_url}}" alt="{{picture.title}}" />
+				<img data-index={{picture.index}} data-src="{{picture.picture_url}}" alt="{{picture.index}}" />
 			</div>
 			{% endfor %}
 		</div>
@@ -31,53 +31,37 @@
 </div>
 <div class="modal">
 	<div class="modal-content">
-		<div class="arrow-container arrow-container-left arrow-container-js arrow-container-left-js">
+		<div class="arrow-container arrow-container-left arrow-container-left-js">
 			{% include "../widgets/arrow.html" with direction="left" %}
 		</div>
-		<div class="arrow-container arrow-container-right arrow-container-js arrow-container-right-js">
+		<div class="arrow-container arrow-container-right arrow-container-right-js">
 			{% include "../widgets/arrow.html" with direction="right" %}
 		</div>
 		<div class="carousel">
 			{% for picture_post in page.all_picture_posts %}
 			<div class="post-container">
-				<div class="modal-img-container center-img-container-js">
-					<img class="center-img-js" src="{{picture_post.picture_url}}" alt="" />
+				<div class="post-img-container">
+					<img data-index="{{picture.index}}" src="{{picture_post.picture_url}}" alt="{{picture_post.title}}"/>
+				</div>
+				<div class="post-detail-container">
+					<div class="post-detail-left-col">
+						<h4>{{picture_post.title}}</h4>
+						<p>{{picture_post.description}}</p>
+					</div>
+					<div class="post-detail-right-col">
+						{% if picture_post.has_dimensions %}
+						<p>{{picture_post.dimensions}}</p>
+						{% endif %}
+						<p>{{picture_post.medium}}</p>
+						{% if picture_post.has_price %}
+						<p>{{picture_post.price}}</p>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 			{% endfor %}
 		</div>
 	</div>
 </div>
-
-
-{% comment %}
-{% for picture_post in page.all_picture_posts %}
-  <p>
-    TITLE: {{picture_post.title}}
-  </p>
-  <p>
-    MEDIUM: {{picture_post.medium}}
-  </p>
-  <p>
-    DESCRIPTION: {{picture_post.description}}
-  </p>
-  {% if picture_post.has_price %}
-  <p>
-    PRICE: {{picture_post.price}}
-  </p>
-  {% endif %}
-  {% if picture_post.has_dimensions %}
-  <p>
-    DIMENSION: {{picture_post.dimensions}}
-  </p>
-  {% endif %}
-  <p>
-    PICTURE
-  </p>
-  <img data-src="{{picture_post.picture_url}}" alt="" />
-  <hr>
-
-{% endfor %}
-{% endcomment %}
 
 {% endblock %}

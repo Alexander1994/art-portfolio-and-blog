@@ -38,8 +38,9 @@ class BlogPostStreamPage(object):
                 for blog_post in self.blog_posts]
 
 class PicturePostPage(object):
-    def __init__(self, pk):
+    def __init__(self, pk, index):
         self.picture_post = PicturePost.objects.filter(pk=pk).first()
+        self.index = index
 
     @property
     def exists(self):
@@ -95,8 +96,8 @@ class PicturePostPage(object):
 
 def get_picture_post_list():
     picture_posts = PicturePost.objects.all().order_by('date')
-    return [PicturePostPage(picture_post.pk)
-            for picture_post in picture_posts]
+    return [PicturePostPage(picture_post.pk, index)
+            for (index, picture_post) in enumerate(picture_posts)]
 
 class PicturePostStreamPage(object):
     def __init__(self):

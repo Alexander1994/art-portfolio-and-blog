@@ -29,26 +29,14 @@ nav {
   }
 }
 
-/*
-When img for logo is supplied by client use:
-width: *insert width of img*;
-margin: 0 auto;
-*/
-
 // Iscroll settings
 * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
-html {
-	-ms-touch-action: none;
-}
-
-body {
-	overflow: hidden; /* this is important to prevent the whole page to bounce */
-}
+html { -ms-touch-action: none; }
+body { overflow: hidden; } /* this is important to prevent the whole page to bounce */
 
 //scroll wrapper
 .iscroll-wrapper {
@@ -60,6 +48,7 @@ body {
 	width: 100%;
 	background: #ccc;
 }
+
 .iscroller {
   @imgsidepadding: 1em;
   @streamdivideheight: 1em;
@@ -70,35 +59,23 @@ body {
   min-width: 100%;
   height: 100%;
 	background-color: #fafafa;
-	-webkit-transform: translateZ(0);
-	-mo-transform: translateZ(0);
-	-ms-transform: translateZ(0);
-	-o-transform: translateZ(0);
-	transform: translateZ(0);
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	-webkit-text-size-adjust: none;
-	-moz-text-size-adjust: none;
-	-ms-text-size-adjust: none;
-	-o-text-size-adjust: none;
-	text-size-adjust: none;
+  .no-touch;
+  .vendorMozO(transform, translateZ(0));
+  .vendorMozO(text-size-adjust, none);
 
   // Stream
   .upper-stream, .lower-stream {
     width: 100%;
     height: 49%;
     white-space: nowrap;
-    display: flex;
+    .flex-display;
   }
   .upper-stream {
-    align-items: flex-end;
+    .vendor(align-items, flex-end);
     margin: 0 @imgsidepadding 0 @imgsidepadding;
   }
   .lower-stream {
-    align-items: flex-start;
+    .vendor(align-items, flex-start);
     margin: @streamdivideheight @imgsidepadding 0 @imgsidepadding;
   }
 
@@ -117,69 +94,97 @@ body {
   }
 }
 /* Modal */
-.modal {
-  @content-height: 90%;
-  @content-width: 70%;
+@modal-content-height: 90%;
+@modal-content-width: 70%;
 
+.modal {
   position: fixed;
-  z-index: 1;
+  z-index: 4;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
+  visibility: hidden;
   background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .flex-display;
+  .vendor(align-items, center);
+  .vendor(justify-content, center);
+}
 
-  &-content {
-    background: white;
-    width: @content-width;
-    height: @content-height;
-    position: relative;
+/* Modal Content */
+.modal-content {
+  z-index: 1;
+  background: white;
+  width: @modal-content-width;
+  height: @modal-content-height;
+  position: relative;
 
-    .arrow-container {
-      cursor: pointer;
-      width: @content-width/2;
-      height: 70%;
-      position: absolute;
-      top: 0;
-      z-index: 5;
-
-
-      &-right { right: 1em; }
-      &-left {  left: 1em;  }
-
-    }
-
+  .carousel {
+    height: 100%;
+    & > div { height: 100%; }
   }
-  &-img-container {
+
+  .arrow-container {
+    cursor: pointer;
+    width: @modal-content-width/2;
+    height: 70%;
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    .flex-display;
+    .vendor(align-items, center);
+
+    &-right {
+      right: 1em;
+      .vendor(justify-content, flex-end);
+    }
+    &-left {
+      left: 1em;
+      .vendor(justify-content, flex-start);
+    }
+  }
+}
+
+/* Post */
+.post-container {
+  width: @modal-content-width;
+  height: 100%;
+
+  /* Image */
+  .post-img-container {
     background: black;
     height: 70%;
     width: 100%;
+    .flex-display;
+    .vendor(justify-content, center);
+    .vendor(align-items, center);
+
     img {
+      .no-touch;
       max-width: 100%;
       max-height: 100%;
     }
   }
-  .post-container {
-    width: @content-width;
-    height: 100%;
-  }
-}
-.right-arrow {
-  float: right;
-}
 
+  /* Post Detail */
+  .post-detail-container {
+    position: relative;
+    width: 100%;
 
+    .post-detail-right-col {
+      float: right;
+      height: 100%;
+      display: inline-block;
+      width: 40%;
+    }
 
-/* Carousel */
-.carousel {
-  height: 100%;
-
-  & > div {
-    height: 100%;
+    .post-detail-left-col {
+      float: left;
+      height: 100%;
+      display: inline-block;
+      width: 60%;
+    }
   }
 }
 
@@ -200,6 +205,38 @@ a {
 
 h1 {
   margin-bottom: 0;
+}
+
+
+  // Helper Styles
+
+/* Flex */
+.vendor(@property, @value) {
+  -webkit-@{property}: @value;
+      -ms-@{property}: @value;
+          @{property}: @value;
+}
+.vendorMozO(@property, @value) {
+  .vendor(@property, @value);
+  -moz-@{property}: @value;
+    -o-@{property}: @value;
+}
+
+.flex-display(@display: flex) {
+	display: ~"-webkit-@{display}";
+	display: ~"-ms-@{display}box"; // IE10 uses -ms-flexbox
+	display: ~"-ms-@{display}"; // IE11
+	display: @display;
+}
+/* Prevent touch */
+.no-touch {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari*/
+     -khtml-user-select: none; /* Konqueror */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
 
 /* Deffered Images */
