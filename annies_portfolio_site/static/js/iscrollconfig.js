@@ -1,5 +1,5 @@
 var myScroll;
-function loaded() {
+window.onload = function() {
     myScroll = new IScroll('.iscroll-wrapper', {
       scrollX: true,
       scrollY: false,
