@@ -1,8 +1,9 @@
 from annies_portfolio_site.models import Medium, Picture, PicturePost, BlogPost
 
 class BlogPostPage(object):
-    def __init__(self, pk):
+    def __init__(self, pk, index):
         self.blog_post = BlogPost.objects.filter(pk=pk).first()
+        self.index = index
 
     @property
     def exists(self):
@@ -21,6 +22,10 @@ class BlogPostPage(object):
         return self.blog_post.date
 
     @property
+    def thumbnail_size(self):
+        return self.blog_post.thumbnail_size
+
+    @property
     def has_picture(self):
         return True if self.blog_post.picture else False
 
@@ -28,14 +33,26 @@ class BlogPostPage(object):
     def picture_url(self):
         return self.blog_post.picture.image.url
 
+def get_blog_post_list():
+    blog_posts = BlogPost.objects.all().order_by('date')
+    return [BlogPostPage(blog_post.pk, index)
+            for (index, blog_post) in enumerate(blog_posts)]
+
 class BlogPostStreamPage(object):
     def __init__(self):
-        self.blog_posts = BlogPost.objects.all().order_by('date')
+        self.blog_post_list = get_blog_post_list()
 
     @property
-    def all_blog_posts(self):
-        return [BlogPostPage(blog_post.pk)
-                for blog_post in self.blog_posts]
+    def upper_stream_blog_posts(self):
+        return self.blog_post_list[0:][::2] # even
+
+    @property
+    def lower_stream_blog_posts(self):
+        return self.blog_post_list[1:][::2] # odd
+
+    @property
+    def all_picture_posts(self):
+        return self.blog_post_list
 
 class PicturePostPage(object):
     def __init__(self, pk, index):
@@ -51,15 +68,7 @@ class PicturePostPage(object):
         return self.picture_post.picture.image.url
 
     @property
-    def picture_height(self):
-        return self.picture_post.picture.image.height
-
-    @property
-    def picture_width(self):
-        return self.picture_post.picture.image.width
-
-    @property
-    def picture_thumbnail_size(self):
+    def thumbnail_size(self):
         return self.picture_post.thumbnail_size
 
     @property

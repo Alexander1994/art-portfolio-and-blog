@@ -1,6 +1,19 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 
+XSMALL='xs'
+SMALL='sm'
+MEDIUM='md'
+LARGE='lg'
+XLARGE='xl'
+THUMBNAIL_SIZE_CHOICES = (
+    (XSMALL, 'extra-small'),
+    (SMALL, 'small'),
+    (MEDIUM, 'medium'),
+    (LARGE, 'large'),
+    (XLARGE, 'extra-large'),
+)
+
 class Medium(models.Model):
     name = models.CharField(max_length=255)
 
@@ -18,18 +31,6 @@ class Picture(models.Model):
         return self.name
 
 class PicturePost(models.Model):
-    XSMALL='xs'
-    SMALL='sm'
-    MEDIUM='md'
-    LARGE='lg'
-    XLARGE='xl'
-    THUMBNAIL_SIZE_CHOICES = (
-        (XSMALL, 'extra-small'),
-        (SMALL, 'small'),
-        (MEDIUM, 'medium'),
-        (LARGE, 'large'),
-        (XLARGE, 'extra-large'),
-    )
     title = models.CharField(max_length=255)
     picture = models.ForeignKey(Picture)
     description = models.TextField()
@@ -58,6 +59,7 @@ class BlogPost(models.Model):
     body = models.TextField()
     date = models.DateField(auto_now_add=True)
     picture = models.ForeignKey(Picture, on_delete=models.SET_NULL, null=True, blank=True)
+    thumbnail_size = models.CharField(max_length=2, choices=THUMBNAIL_SIZE_CHOICES, default=MEDIUM)
 
     def __str__(self):
         return "{}, {}".format(self.title, self.date)
