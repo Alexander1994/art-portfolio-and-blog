@@ -15,15 +15,15 @@
 	<div class="iscroller stream-js">
 		<div class="upper-stream">
 			{% for picture in page.upper_stream_picture_posts  %}
-			<div class="post post-{{picture.picture_thumbnail_size}}">
-				<img data-index={{picture.index}} data-src="{{picture.picture_url}}" alt="{{picture.title}}" />
+			<div class="post post-{{picture.thumbnail_size}} picture">
+				<img data-index="{{picture.index}}" data-src="{{picture.picture_url}}" alt="{{picture.title}}" />
 			</div>
 			{% endfor %}
 		</div>
 		<div class="lower-stream">
 			{% for picture in page.lower_stream_picture_posts %}
-			<div class="post post-{{picture.picture_thumbnail_size}}">
-				<img data-index={{picture.index}} data-src="{{picture.picture_url}}" alt="{{picture.index}}" />
+			<div class="post post-{{picture.thumbnail_size}} picture">
+				<img data-index="{{picture.index}}" data-src="{{picture.picture_url}}" alt="{{picture.index}}" />
 			</div>
 			{% endfor %}
 		</div>
@@ -39,7 +39,7 @@
 		</div>
 		<div class="carousel">
 			{% for picture_post in page.all_picture_posts %}
-			<div class="post-container">
+			<div class="post-container post-container-js">
 				<div class="post-img-container">
 					<img data-index="{{picture.index}}" src="{{picture_post.picture_url}}" alt="{{picture_post.title}}"/>
 				</div>

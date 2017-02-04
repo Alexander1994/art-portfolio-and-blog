@@ -1,27 +1,61 @@
 {% extends "base.html" %}
+{% load static %}
+{% load cdn %}
 {% block title %} Blog {% endblock %}
 {% block description %}Collection of Annie Jefferson's blog posts{% endblock %}
-
+{% block javascript %}
+<script async src="{% cdn_url 'iscroll' %}"></script>
+<script src="{% static "js/iscrollconfig.js" %}"></script>
+<script async src="{% static "js/deffer-img.js" %}"></script>
+<script src="{% static "js/bundle.js" %}"></script>
+<script src="{% static "js/center-img.js" %}"></script>
+{% endblock %}
 {% block content %}
-<h1>Blog Stream</h1>
-{% for blog in page.all_blog_posts %}
-  <p>
-    TITLE: {{blog.title}}
-  </p>
-  <p>
-    BODY: {{blog.body}}
-  </p>
-  <p>
-    DATE: {{blog.date}}
-  </p>
-  {% if blog.has_picture %}
-  <p>
-    PICTURE
-  </p>
-  <img src="{{blog.picture_url}}" alt="" />
-  {% endif %}
-  <hr>
-
-{% endfor %}
+<div class="iscroll-wrapper">
+	<div class="iscroller stream-js">
+		<div class="upper-stream">
+			{% for blog in page.upper_stream_blog_posts  %}
+			<div class="post post-{{blog.thumbnail_size}} blog">
+        {% if blog.has_picture %}
+				<h4 data-index="{{blog.index}}">{{blog.title}}</h4>
+				<img data-src="{{blog.picture_url}}" alt="{{blog.title}}" class="blog-picture" />
+				{% else %}
+				<h4 data-index="{{blog.index}}">{{blog.title}}</h4>
+				{% endif %}
+			</div>
+			{% endfor %}
+		</div>
+		<div class="lower-stream">
+			{% for blog in page.lower_stream_blog_posts %}
+			<div class="post post-{{blog.thumbnail_size}} blog">
+				{% if blog.has_picture %}
+				<h4 data-index="{{blog.index}}">{{blog.title}}</h4>
+				<img data-src="{{blog.picture_url}}" alt="{{blog.title}}" class="blog-picture" />
+				{% else %}
+				<h4 data-index="{{blog.index}}">{{blog.title}}</h4>
+        {% endif %}
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+<div class="modal">
+	<div class="modal-content">
+		<div class="carousel">
+			{% for blog_post in page.all_picture_posts %}
+			<div class="blog-post-container post-container-js">
+				<header>
+					<h4>{{blog_post.title}}</h4>
+					<b>{{blog_post.date}}</b>
+				</header>
+				{% if blog_post.has_picture %}
+				<img src="{{blog_post.picture_url}}" alt="{{blog_post.title}}"/>
+				{% endif %}
+				<p>{{blog_post.body}}</p>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
 
 {% endblock %}

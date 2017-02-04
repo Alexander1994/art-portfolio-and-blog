@@ -11,13 +11,16 @@ var siema = new Siema({
   loop: true
 });
 
-document.getElementsByClassName('arrow-container-left-js')[0].addEventListener('click', function() {
-  siema.prev();
-});
+var isPortfolio = document.getElementsByClassName('blog').length === 0;
+if (isPortfolio) {
+  document.getElementsByClassName('arrow-container-left-js')[0].addEventListener('click', function() {
+    siema.prev();
+  });
 
-document.getElementsByClassName('arrow-container-right-js')[0].addEventListener('click', function() {
-  siema.next();
-});
+  document.getElementsByClassName('arrow-container-right-js')[0].addEventListener('click', function() {
+    siema.next();
+  });
+}
 
 var modal = document.getElementsByClassName('modal')[0];
 
@@ -30,7 +33,7 @@ modal.addEventListener('click', function(event) {
 Siema.prototype.addImgPagination = function () {
   var si = this;
   document.getElementsByClassName('stream-js')[0].addEventListener('tap', function(event) {
-    var index = event.target.getAttribute('data-index');
+    var index = event.target.getAttribute('data-index') || event.target.children[0].getAttribute('data-index');
     if (index) {
       document.getElementsByClassName('modal')[0].style.visibility = "visible";
       si.goTo(index);
