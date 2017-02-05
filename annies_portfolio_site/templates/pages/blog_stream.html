@@ -46,7 +46,7 @@
 				{% if blog_post.has_picture %}
 				<img src="{{blog_post.picture_url}}" alt="{{blog_post.title}}"/>
 				{% endif %}
-				<p>{{blog_post.body}}</p>
+				<p>{{blog_post.body|safe}}</p>
 			</div>
 			{% endfor %}
 		</div>

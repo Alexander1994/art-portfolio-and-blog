@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from tinymce.models import HTMLField
 
 XSMALL='xs'
 SMALL='sm'
@@ -56,7 +57,7 @@ class PicturePost(models.Model):
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=255)
-    body = models.TextField()
+    body = HTMLField()
     date = models.DateField(auto_now_add=True)
     picture = models.ForeignKey(Picture, on_delete=models.SET_NULL, null=True, blank=True)
     thumbnail_size = models.CharField(max_length=2, choices=THUMBNAIL_SIZE_CHOICES, default=MEDIUM)

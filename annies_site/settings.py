@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'annies_portfolio_site',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -104,6 +105,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+TINYMCE_DEFAULT_CONFIG = {
+    'theme' : 'advanced',
+    'theme_advanced_buttons1' : 'bold,italic,underline,separator,bullist,numlist,separator,link,unlink',
+    'theme_advanced_buttons2' : '',
+    'theme_advanced_buttons3' : '',
+    'theme_advanced_toolbar_location' : 'top',
+    'theme_advanced_toolbar_align': 'left',
+    'paste_text_sticky': True,
+    'paste_text_sticky_default' : True,
+    'valid_styles' : 'font-weight,font-style,text-decoration',
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
