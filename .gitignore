@@ -7,9 +7,8 @@ __pycache__/
 local_settings.py
 media
 
-# CSS
-app.css
-app.min.css
+# DIST
+dist
 
 # JS
 node_modules

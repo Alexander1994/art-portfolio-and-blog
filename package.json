@@ -10,13 +10,17 @@
   "author": "Alex McCallum",
   "license": "MIT",
   "cdnDependencies": {
-    "iscroll": "^5.2.0"
+    "iscroll": "^5.2.0",
+    "skeleton": "^2.0.4",
+    "normalize": "^5.0.0"
   },
   "devDependencies": {
     "browserify": "^13.3.0",
-    "less": "^2.7.2"
+    "less": "^2.7.2",
+    "uglify-js": "^2.7.5"
   },
   "dependencies": {
+    "iscroll": "^5.2.0",
     "siema": "^1.1.1"
   }
 }

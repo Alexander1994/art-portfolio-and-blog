@@ -1,14 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
-{% load cdn %}
 {% block title %} Portfolio {% endblock %}
 {% block description %}Annie Jefferson's Portfolio{% endblock %}
 {% block javascript %}
-<script async src="{% cdn_url 'iscroll' %}"></script>
-<script src="{% static "js/iscrollconfig.js" %}"></script>
-<script async src="{% static "js/deffer-img.js" %}"></script>
-<script src="{% static "js/bundle.js" %}"></script>
-<script src="{% static "js/center-img.js" %}"></script>
+<script src="{% static "dist/js/index.min.js" %}"></script>
 {% endblock %}
 {% block content %}
 <div class="iscroll-wrapper">

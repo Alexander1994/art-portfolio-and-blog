@@ -1,4 +1,11 @@
 var Siema = require('siema');
+var defferImg = require('./defferImg');
+var setModalContentWidth = require('./setModalContentWidth');
+var IScroll = require('iscroll');
+var myScroll;
+
+setModalContentWidth();
+defferImg();
 
 var siema = new Siema({
   selector: '.carousel',
@@ -10,6 +17,16 @@ var siema = new Siema({
   threshold: 20,
   loop: true
 });
+
+window.onload = function() {
+    myScroll = new IScroll('.iscroll-wrapper', {
+      scrollX: true,
+      scrollY: false,
+      mouseWheel: true,
+      deceleration: 0.0065,
+      tap: true
+    });
+}
 
 var isPortfolio = document.getElementsByClassName('blog').length === 0;
 if (isPortfolio) {
