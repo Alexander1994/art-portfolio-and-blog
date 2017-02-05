@@ -10,7 +10,6 @@
   "author": "Alex McCallum",
   "license": "MIT",
   "cdnDependencies": {
-    "iscroll": "^5.2.0",
     "skeleton": "^2.0.4",
     "normalize": "^5.0.0"
   },
