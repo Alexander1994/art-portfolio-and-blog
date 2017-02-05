@@ -15,24 +15,8 @@ def picture_stream_page(request):
         'page': page
     })
 
-def picture_page(request, pk):
-    page = PicturePostPage(pk)
-    if not page.exists:
-        raise Http404()
-    return render(request, 'pages/picture.html', {
-        'page': page
-    })
-
 def blog_stream_page(request):
     page = BlogPostStreamPage()
     return render(request, 'pages/blog_stream.html', {
-        'page': page
-    })
-
-def blog_page(request, pk):
-    page = BlogPostPage(pk)
-    if not page.exists:
-        raise Http404()
-    return render(request, 'pages/blog.html', {
         'page': page
     })
