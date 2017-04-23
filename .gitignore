@@ -3,6 +3,7 @@
 *.log
 *.pot
 *.pyc
+secret_key.txt
 __pycache__/
 local_settings.py
 media
