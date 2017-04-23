@@ -38,6 +38,36 @@ nav {
 html { -ms-touch-action: none; }
 body { overflow: hidden; } /* this is important to prevent the whole page to bounce */
 
+// shadows
+
+.shadow {
+  position: absolute;
+  top: @headerheight;
+  bottom: @footerheight;
+  left: 0;
+  right: 0;
+
+  &-left:before {
+    box-shadow: 15px 0 15px -15px inset;
+    content: " ";
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    top: 0;
+    width: 15px;
+    z-index: 4;
+  }
+  &-right:after {
+    box-shadow: -15px 0 15px -15px inset;
+    content: " ";
+    height: 100%;
+    position: absolute;
+    right: 0px;
+    width: 15px;
+    z-index: 4;
+  }
+}
+
 //scroll wrapper
 .iscroll-wrapper {
 	position: absolute;

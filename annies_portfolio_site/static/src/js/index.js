@@ -18,6 +18,8 @@ var siema = new Siema({
   loop: true
 });
 
+var stream = document.getElementsByClassName('stream-js')[0];
+
 window.onload = function() {
     myScroll = new IScroll('.iscroll-wrapper', {
       scrollX: true,
@@ -27,7 +29,26 @@ window.onload = function() {
       tap: true,
       keyBindings: true
     });
+    myScroll.on('scrollEnd', function() {
+      var x = this.x;
+      var end = -1 * Math.floor(stream.getBoundingClientRect().width - document.getElementsByClassName('iscroll-wrapper')[0].getBoundingClientRect().width);
+      var shadow = document.getElementsByClassName('shadow')[0];
+      shadow.classList.add('shadow-left');
+      shadow.classList.add('shadow-right');
+      if (x === 0) {
+        shadow.classList.remove('shadow-left');
+      } else if (x === end) {
+        shadow.classList.remove('shadow-right');
+      }
+    });
 }
+var wrapper = document.getElementsByClassName('wrapper-js')[0];
+if (stream.offsetWidth >= wrapper.offsetWidth) {
+  var shadow = document.getElementsByClassName('shadow')[0];
+  shadow.classList.add('shadow-right');
+}
+
+
 
 var isPortfolio = document.getElementsByClassName('blog').length === 0;
 if (isPortfolio) {
@@ -50,7 +71,7 @@ modal.addEventListener('click', function(event) {
 
 Siema.prototype.addImgPagination = function () {
   var si = this;
-  document.getElementsByClassName('stream-js')[0].addEventListener('tap', function(event) {
+  stream.addEventListener('tap', function(event) {
     var index = event.target.getAttribute('data-index') || event.target.children[0].getAttribute('data-index');
     if (index) {
       document.getElementsByClassName('modal')[0].style.visibility = "visible";
