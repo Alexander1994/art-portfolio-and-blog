@@ -19,7 +19,7 @@
 		<div class="lower-stream">
 			{% for picture in page.lower_stream_picture_posts %}
 			<div class="post post-{{picture.thumbnail_size}} picture">
-				<img data-index="{{picture.index}}" data-src="{{picture.picture_url}}" alt="{{picture.index}}" />
+				<img data-index="{{picture.index}}" data-src="{{picture.picture_url}}" alt="{{picture.title}}" />
 			</div>
 			{% endfor %}
 		</div>
